@@ -2,17 +2,20 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require('cors');
 const app = express();
-const port = 5000;
+require('dotenv').config();
 
-mongoose.connect("mongodb+srv://gvinith2005:cihXKejEeEsCoTgN@expense-tracker.ee3if.mongodb.net/")
+port= process.env.port_point;
+mongo_db = process.env.mongodb_connect;
+
+mongoose.connect(mongo_db)
     .then(() => console.log("Connected to MONGO_DB"))
     .catch(err => console.error('DB error', err));
 
 
+
 app.use(cors({
-  origin: 'https://zp1v56uxy8rdx5ypatb0ockcb9tr6a-oci3--5173--55edb8f4.local-credentialless.webcontainer-api.io' || "http://localhost:5173",
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
+  origin: 'http://localhost:5173',
+  credentials: true,
 }));
 
 app.use(express.json());
