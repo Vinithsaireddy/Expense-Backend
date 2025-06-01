@@ -15,10 +15,10 @@ const transactionSchema = new mongoose.Schema({
   amount: { type: Number, required: true },
   category: { type: String, required: true },
   date: { type: Date, default: Date.now },
-  monthlyLimit: { type: Number, default: 0 }, // For new users or new month
+  monthlyLimit: { type: Number, default: 0 }, 
   paymentMethod: { type: String },
   description: { type: String },
-  recurringFrequency: { type: String }, // e.g. daily, weekly, monthly
+  recurringFrequency: { type: String }, 
   tags: [String],
   priority: { type: String, enum: ['low', 'medium', 'high'], default: 'medium' },
   paymentStatus: { type: String, enum: ['pending', 'paid'], default: 'paid' },
