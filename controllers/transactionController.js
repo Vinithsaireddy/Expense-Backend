@@ -1,11 +1,10 @@
 const Transaction = require('../models/Transaction');
 
-// Create a new transaction
 exports.createTransaction = async (req, res) => {
   try {
     const transaction = new Transaction({
       ...req.body,
-      userId: req.user.id, // From auth middleware
+      userId: req.user.id,
     });
     await transaction.save();
     res.status(201).json(transaction);
@@ -14,7 +13,6 @@ exports.createTransaction = async (req, res) => {
   }
 };
 
-// Get all transactions (optionally filter by user, dates, etc.)
 exports.getTransactions = async (req, res) => {
   try {
     const transactions = await Transaction.find({ userId: req.user.id }).sort({ date: -1 });
@@ -24,7 +22,6 @@ exports.getTransactions = async (req, res) => {
   }
 };
 
-// Get single transaction by ID
 exports.getTransactionById = async (req, res) => {
   try {
     const transaction = await Transaction.findById(req.params.id);
@@ -36,7 +33,6 @@ exports.getTransactionById = async (req, res) => {
   }
 };
 
-// Update a transaction
 exports.updateTransaction = async (req, res) => {
   try {
     const transaction = await Transaction.findByIdAndUpdate(req.params.id, req.body, {
@@ -51,7 +47,6 @@ exports.updateTransaction = async (req, res) => {
   }
 };
 
-// Delete a transaction
 exports.deleteTransaction = async (req, res) => {
   try {
     const transaction = await Transaction.findByIdAndDelete(req.params.id);
