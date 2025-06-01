@@ -14,7 +14,7 @@ mongoose.connect(mongo_db)
 
 
 app.use(cors({
-  origin: 'http://localhost:5173',
+  origin: 'https://expense-frontend-livid.vercel.app',
   credentials: true,
 }));
 
